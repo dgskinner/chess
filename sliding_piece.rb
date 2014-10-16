@@ -12,6 +12,9 @@ class SlidingPiece < Piece
       while @board.on_board?(new_pos) && allowed?(new_pos)
         # break if piece taken
         possible_moves << new_pos
+        #if the position is occupied by an enemy, it is valid
+        #but we must not continue in this direction
+        break unless @board[new_pos].nil?
         first, second = new_pos
         new_pos = [first + row_move, second + column_move]
       end
